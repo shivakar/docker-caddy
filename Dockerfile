@@ -33,8 +33,6 @@ RUN GOOS=linux GOARCH=amd64 go run build.go -goos=$GOOS -goarch=$GOARCH -goarm=$
 # Final image
 FROM alpine:3.9
 
-ENV ACME_AGREE="false"
-
 RUN apk add --no-cache openssh-client git
 
 COPY --from=builder /install/caddy /usr/bin/caddy
@@ -50,4 +48,4 @@ COPY Caddyfile /etc/Caddyfile
 COPY index.html /srv/index.html
 
 ENTRYPOINT ["/usr/bin/caddy"]
-CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "--agree=$ACME_AGREE"]
+CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "-agree=false"]
