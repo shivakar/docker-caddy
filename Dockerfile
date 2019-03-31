@@ -37,7 +37,7 @@ ENV ACME_AGREE="false"
 
 RUN apk add --no-cache openssh-client git
 
-COPY --from=builder /install/caddy /usr/bin/caddy 
+COPY --from=builder /install/caddy /usr/bin/caddy
 
 RUN /usr/bin/caddy -version
 RUN /usr/bin/caddy -plugins
